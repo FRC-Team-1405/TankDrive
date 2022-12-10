@@ -29,7 +29,7 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed){
-    drive.tankDrive(leftSpeed, rightSpeed);
+    drive.tankDrive(-leftSpeed, rightSpeed);
   }
   public void arcadeDrive(double speed, double rotation){
     drive.arcadeDrive(speed, rotation);
