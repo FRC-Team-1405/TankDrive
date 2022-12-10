@@ -8,20 +8,24 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.lib.FeatureFlag;
 
 public class DriveBase extends SubsystemBase {
   /** Creates a new DriveBase. */
 
   private WPI_TalonSRX frontleft = new WPI_TalonSRX(1);
-  private WPI_TalonSRX frontright = new WPI_TalonSRX(3);
-  private WPI_TalonSRX rearleft = new WPI_TalonSRX(2);
-  private WPI_TalonSRX rearright = new WPI_TalonSRX(4);
+  private WPI_TalonSRX frontright = new WPI_TalonSRX(2);
 
   private DifferentialDrive drive = new DifferentialDrive(frontleft,frontright);
   
   public DriveBase() {
-    rearleft.follow(frontleft);
-    rearright.follow(frontright);
+    if (FeatureFlag.isEnabled(FeatureFlag.Flag.MotorDouble)){
+      WPI_TalonSRX rearleft = new WPI_TalonSRX(3);
+      WPI_TalonSRX rearright = new WPI_TalonSRX(4);
+    
+      rearleft.follow(frontleft);
+      rearright.follow(frontright);
+    }
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed){
