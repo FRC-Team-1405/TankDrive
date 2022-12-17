@@ -6,7 +6,10 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.lib.FeatureFlag;
 
@@ -15,6 +18,7 @@ public class DriveBase extends SubsystemBase {
 
   private WPI_TalonSRX frontleft = new WPI_TalonSRX(1);
   private WPI_TalonSRX frontright = new WPI_TalonSRX(2);
+  private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   private DifferentialDrive drive = new DifferentialDrive(frontleft,frontright);
   
@@ -22,6 +26,9 @@ public class DriveBase extends SubsystemBase {
     if (FeatureFlag.isEnabled(FeatureFlag.Flag.MotorDouble)){
       WPI_TalonSRX rearleft = new WPI_TalonSRX(3);
       WPI_TalonSRX rearright = new WPI_TalonSRX(4);
+      gyro.calibrate();
+        Shuffleboard.getTab("Gyro").add(gyro);
+  
     
       rearleft.follow(frontleft);
       rearright.follow(frontright);
