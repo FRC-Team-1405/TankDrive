@@ -4,7 +4,14 @@
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/DriveBase": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
-      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Talon SRX [3]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [4]": "Motor Controller"
+    }
+  },
+  "NetworkTables": {
+    "SmartDashboard": {
+      "open": true
     }
   }
 }

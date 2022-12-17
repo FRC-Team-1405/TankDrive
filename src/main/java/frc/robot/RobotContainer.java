@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.TankDrive;
+import frc.robot.lib.CycleCommands;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Pneumatics;
 import frc.robot.commands.Buzzer;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -46,9 +48,13 @@ private final Buzzer buzzer = new Buzzer(pneumatics);
    */
 
   private void configureButtonBindings() {
-    new JoystickButton(driver, XboxController.Button.kA.value).whenPressed(tankDrive); 
-    new JoystickButton(driver, XboxController.Button.kB.value).whenPressed(arcadeDrive); 
     new JoystickButton(driver, XboxController.Button.kY.value).whenPressed(buzzer);
+
+    new CycleCommands( "Drive Mode",
+                       new CommandBase[] {tankDrive, arcadeDrive},
+                       new JoystickButton(driver, XboxController.Button.kLeftBumper.value),
+                       new JoystickButton(driver, XboxController.Button.kRightBumper.value)
+                       );
   }
 
   /**
