@@ -10,6 +10,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Pneumatics;
+import frc.robot.commands.Buzzer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,6 +28,7 @@ private final DriveBase driveBase = new DriveBase();
 private final TankDrive tankDrive = new TankDrive(driveBase, driver::getLeftY, driver::getRightY);
 private final ArcadeDrive arcadeDrive = new ArcadeDrive(driveBase, driver::getLeftY, driver::getRightX);
 private final Pneumatics pneumatics = new Pneumatics();
+private final Buzzer buzzer = new Buzzer(pneumatics);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -46,6 +48,7 @@ private final Pneumatics pneumatics = new Pneumatics();
   private void configureButtonBindings() {
     new JoystickButton(driver, XboxController.Button.kA.value).whenPressed(tankDrive); 
     new JoystickButton(driver, XboxController.Button.kB.value).whenPressed(arcadeDrive); 
+    new JoystickButton(driver, XboxController.Button.kY.value).whenPressed(buzzer);
   }
 
   /**
